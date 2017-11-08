@@ -38,7 +38,7 @@ def reply(openid, appid, tpl, msg):
 
 def getMsg(msg):
     try:
-        return Msg.get(Msg.key == msg).content
+        return Msg.get(Msg.keyword == msg).content
     except Exception as err:
         logger.info(err)
         return msg
