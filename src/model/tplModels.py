@@ -17,5 +17,5 @@ class Tpl(BaseModel):
     created_date = DateTimeField(default=datetime.datetime.now)
 
 class Msg(BaseModel):
-    key = CharField(unique=True)
+    keyword = CharField(unique=True)
     content = CharField()
