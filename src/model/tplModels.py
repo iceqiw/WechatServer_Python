@@ -12,10 +12,10 @@ import datetime
 
 class Tpl(BaseModel):
     tpl_key = CharField(unique=True)
-    tpl_type = CharField()
     message = TextField()
     created_date = DateTimeField(default=datetime.datetime.now)
 
 class Msg(BaseModel):
     keyword = CharField(unique=True)
+    tpl_key = CharField()
     content = CharField()

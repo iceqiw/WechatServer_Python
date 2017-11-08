@@ -19,26 +19,21 @@ def parse(data):
         return processMsg(openid, appid, msg)
 
 
-def processMsg(openid, appid, msg):
+def processMsg(openid, appid, m):
     try:
-        t = Tpl.get(Tpl.tpl_key == msg)
+        msgCfg=Msg.get(Msg.keyword == m)
+        t = Tpl.get(Tpl.tpl_key == msgCfg.tpl_key)
     except Exception as err:
+        logger.debug(err)
         t = Tpl.get(Tpl.tpl_key == 'msg')
-    return reply(openid, appid, t.message, msg)
+        return reply(openid, appid, t.message, m)
+
+    return reply(openid, appid, t.message, msgCfg.content)
 
 
 def reply(openid, appid, tpl, msg):
     if not tpl.strip():
         return None
-    real_msg = getMsg(msg)
     CreateTime = int(time.time())
-    out = tpl % (openid, appid, CreateTime, real_msg)
+    out = tpl % (openid, appid, CreateTime, msg)
     return out
-
-
-def getMsg(msg):
-    try:
-        return Msg.get(Msg.keyword == msg).content
-    except Exception as err:
-        logger.info(err)
-        return msg
