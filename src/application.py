@@ -14,7 +14,7 @@ from config.router import web_handlers
 settings = {'cookie_secret': 'e440769943b4e8442f09de341f3fea28462d2341f483a0ed9a3d5d3859f==78d',
             'session_secret': "3cdcb1f07693b6e75ab50b466a40b9977db123440c28307f428b25e2231f1bcc",
             'session_timeout': 3600,
-            'port': 8080,
+            'port': 19999,
             }
 
 define("port", default=settings['port'], help="run on the given port", type=int)
